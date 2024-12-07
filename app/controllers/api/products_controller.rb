@@ -4,7 +4,7 @@ class Api::ProductsController < ApplicationController
   def index
     products = Product.all
     Rails.logger.info "Retrieved #{products.count} products"
-    render json: products.as_json(only: [:id, :name])
+    render json: products.as_json(only: [ :id, :name ])
   end
 
   def create
