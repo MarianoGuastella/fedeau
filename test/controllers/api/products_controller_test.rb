@@ -3,7 +3,7 @@ require "test_helper"
 class Api::ProductsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = User.create!(username: "test_user", password: "password123")
-    @token = JWT.encode({ user_id: @user.id, exp: 24.hours.from_now.to_i }, Rails.application.secret_key_base)
+    @token = JWT.encode({ user_id: @user.id, exp: 2.hours.from_now.to_i }, Rails.application.secret_key_base)
     @headers = { "Authorization" => "Bearer #{@token}" }
     @product = Product.create!(name: "Existing Product")
   end

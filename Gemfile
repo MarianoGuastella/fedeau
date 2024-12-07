@@ -32,6 +32,7 @@ gem "bootsnap", require: false
 gem "pg"
 gem "jwt"
 gem "bcrypt"
+gem 'webmock'
 
 # Background processing
 gem "sidekiq"
@@ -47,4 +48,5 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   gem "dotenv-rails"
+
 end
