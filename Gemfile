@@ -32,6 +32,7 @@ gem "bootsnap", require: false
 gem "pg"
 gem "jwt"
 gem "bcrypt"
+gem "webmock"
 
 # Background processing
 gem "sidekiq"
