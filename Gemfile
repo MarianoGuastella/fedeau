@@ -30,6 +30,8 @@ gem "bootsnap", require: false
 # gem "rack-cors"
 
 gem "pg"
+gem "jwt"
+gem "bcrypt"
 
 # Background processing
 gem "sidekiq"

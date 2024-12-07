@@ -74,6 +74,7 @@ GEM
       tzinfo (~> 2.0, >= 2.0.5)
     ast (2.4.2)
     base64 (0.2.0)
+    bcrypt (3.1.20)
     benchmark (0.4.0)
     bigdecimal (3.1.8)
     bootsnap (1.18.4)
@@ -103,6 +104,8 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     json (2.9.0)
+    jwt (2.9.3)
+      base64
     language_server-protocol (3.17.0.3)
     logger (1.6.2)
     loofah (2.23.1)
@@ -263,10 +266,12 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  bcrypt
   bootsnap
   brakeman
   debug
   dotenv-rails
+  jwt
   pg
   puma (>= 5.0)
   rails (~> 7.2.1, >= 7.2.1.1)
