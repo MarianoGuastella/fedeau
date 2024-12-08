@@ -8,9 +8,11 @@ class Api::ProductsController < ApplicationController
   end
 
   def create
-    if params[:name].present?
-      Rails.logger.info "Enqueueing product creation with name: #{params[:name]}"
-      ProductCreationJob.perform_later(name: params[:name])
+    sanitized_name = ActionController::Base.helpers.sanitize(params[:name]&.strip)
+
+    if sanitized_name.present?
+      Rails.logger.info "Enqueueing product creation with name: #{sanitized_name}"
+      ProductCreationJob.perform_later(name: sanitized_name)
       render json: { message: "Product creation queued" }, status: :accepted
     else
       Rails.logger.warn "Attempted to create product without name"
