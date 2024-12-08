@@ -8,9 +8,10 @@ class Api::ProductsController < ApplicationController
   end
 
   def create
-    sanitized_name = ActionController::Base.helpers.sanitize(params[:name]&.strip).to_str
+    name = params[:name]&.strip
 
-    if sanitized_name.present?
+    if name.present?
+      sanitized_name = ActionController::Base.helpers.sanitize(name).to_str
       Rails.logger.info "Enqueueing product creation with name: #{sanitized_name}"
       ProductCreationJob.perform_later(name: sanitized_name)
       render json: { message: "Product creation queued" }, status: :accepted
