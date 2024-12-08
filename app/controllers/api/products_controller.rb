@@ -8,7 +8,7 @@ class Api::ProductsController < ApplicationController
   end
 
   def create
-    sanitized_name = ActionController::Base.helpers.sanitize(params[:name]&.strip)
+    sanitized_name = ActionController::Base.helpers.sanitize(params[:name]&.strip).to_str
 
     if sanitized_name.present?
       Rails.logger.info "Enqueueing product creation with name: #{sanitized_name}"
