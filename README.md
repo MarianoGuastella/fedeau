@@ -28,7 +28,7 @@ You need to install:
 1. Clone the repository
 
 ```bash
-git clone https://github.com/MarianoGuastella/fedeau
+git clone https://github.com/MarianoGuastella/fedeau.git
 cd fedeau
 ```
 
@@ -125,7 +125,7 @@ User.create!(username: "test_user", password: "password123")
 2. Clone and configure the project
 
    ```bash
-   git clone https://github.com/MarianoGuastella/fedeau
+   git clone https://github.com/MarianoGuastella/fedeau.git
    cd fedeau
    bundle install
    cp .env.example .env # Edit .env with your settings
@@ -204,5 +204,5 @@ tail -f log/sidekiq.log
 ## Configuration
 
 - Ruby version: 3.3.5
-- Database system: PostgreSQL
-- Cache and queue system: Redis + Sidekiq
+- Database system: PostgreSQL 14
+- Cache and queue system: Redis 7.4 + Sidekiq
