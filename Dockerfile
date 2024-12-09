@@ -41,7 +41,6 @@ COPY . .
 
 # Add execute permissions to scripts and precompile bootsnap code
 RUN chmod +x bin/* && \
-    chmod +x script/* && \
     bundle exec bootsnap precompile app/ lib/
 
 # Final stage for app image
