@@ -42,12 +42,17 @@ cp .env.example .env
 3. Build and start containers
 
 ```bash
+chmod +x bin/*
+sudo usermod -aG docker $USER
+newgrp docker
 docker compose up --build
 ```
 
-4. Create and set up database
+4. Create and set up database (in another terminal)
 
 ```bash
+sudo usermod -aG docker $USER
+newgrp docker
 docker compose exec web bin/rails db:create
 docker compose exec web bin/rails db:migrate
 ```
@@ -184,21 +189,19 @@ tail -f log/sidekiq.log
 - `POST /api/auth/login` - Login (returns access token)
 
 ```bash
-  #Body example
-  {
-  "username": "test_user",
-  "password": "password123"
-  }
+  curl -X POST http://0.0.0.0:3000/api/authentication/login -H "Content-Type: application/json" -d '{"username": "test_user", "password": "password123"}'
 ```
 
 - `GET /api/products` - List products (requires access token)
+
+```bash
+ curl -X GET http://0.0.0.0:3000/api/products -H "Authorization: Bearer your_token"
+```
+
 - `POST /api/products` - Create product (requires access token)
 
 ```bash
-  #Body example
-  {
-  "name": "Orange"
-  }
+ curl -X POST http://0.0.0.0:3000/api/products   -H "Authorization: Bearer your_token"   -H "Content-Type: application/json"   -d '{"name": "Orange"}'
 ```
 
 ## Configuration
