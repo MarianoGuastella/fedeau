@@ -43,14 +43,16 @@ cp .env.example .env
 
 ```bash
 chmod +x bin/*
-docker compose up --build
 sudo usermod -aG docker $USER
 newgrp docker
+docker compose up --build
 ```
 
-4. Create and set up database
+4. Create and set up database (in another terminal)
 
 ```bash
+sudo usermod -aG docker $USER
+newgrp docker
 docker compose exec web bin/rails db:create
 docker compose exec web bin/rails db:migrate
 ```
