@@ -11,10 +11,12 @@ module JwtAuthenticable
     begin
       decoded = JWT.decode(token, Rails.application.secret_key_base, true, algorithm: "HS256")
       @current_user = User.find(decoded[0]["user_id"])
-      Rails.logger.info "Successfully authenticated user: #{@current_user.id}"
-    rescue StandardError => e
-      Rails.logger.warn "Authentication failed: #{e.message}"
-      render json: { error: "Unauthorized" }, status: :unauthorized
+    rescue JWT::DecodeError => e
+      render json: { error: "Invalid token" }, status: :unauthorized
+    rescue JWT::ExpiredSignature
+      render json: { error: "Token has expired" }, status: :unauthorized
+    rescue ActiveRecord::RecordNotFound
+      render json: { error: "User not found" }, status: :unauthorized
     end
   end
 end
